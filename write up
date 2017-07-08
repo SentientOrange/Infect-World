@@ -1,0 +1,19 @@
+Eric Eckert - eric95
+Derek Wang - d95wang
+CSE 415 sp17
+Tanimoto
+Option A: Wicked Problem
+Main file: Infect_world.py
+Infecting the World
+	For our wicked problem we attempted to model what it would be like for a virus to infect a world's population. We were inspired to do this from a number of online games based around this concept, and by the nature of progression of viral infections. We began by modeling a "world", and created objects to represent our world, "countries", "cities", and our "infection". The world acted as a container for the rest of our objects. 
+	The virus had parameters for rate of infection, and rate of removal (removal is when a person is either deceased or immune from the effect of the virus), which followed the SIR model, a simple set of equations that calculates the status of a population under the effect of disease. In the SIR model, people belong to one of three categories: susceptible, infected, and removed. Susceptible people are susceptible to the disease. Infected people are already affected by the disease and may spread it. Removed people are dead or immune to the disease, and cannot spread it anymore.
+	The countries contain multiple cities, and have a "flow rate" which represents how many people move between cities within the country. This controls the rate at which disease spreads between cities. 
+	The world also contains a dictionary that represents travel routes between cities. It contains a key for every city, pointing to a list that one may travel to from the key city. This is how the disease spreads.
+	Within a city, there are parameters for population, medicine, and for the three categories of people in the SIR model. The medicine represents a city's resistance against the disease. It works by calculating a removal rate that is added to the infection's removal rate, which increases the rate that the disease moves the population into the "removed" category. 
+	A "move" has 5 possible state changes applied to a single city. Each turn, any combination of these 5 state changes may be activated, for every single city. The first is virus mutation. If activated, the virus will randomly increase or decrease its infection and removal rates by a maximum of 2%. The second is infecting a neighboring city. If this change activated, the program will iterate through all possible routes originating from the currently city, and randomly send infected individuals to them, which is calculated from the country flow rate and disease infection rate. The third is quarantine, where the city chooses to cut off travel in order to isolate itself. After this happens, the city cannot be affected by neighboring cities anymore, and will stay that way until the simulation ends. During this time, any other state changes may still be applied to this city. The fourth is an increase in medicine. In this case, a city's medicinal resistance increases at a logarithmic rate. The final is further infection, where the disease continues to infect the current city, calculated from infection rate and the SIR model.
+	Our h(s) function evaluates the progress of the virus in infecting the world. It does this by weighing and aggregating infection ratios, medicine advancement ratios, cities that are completely overrun by the virus, cities that are quarantined, city population removal ratios, and virus ineffectiveness in cities.
+Retrospective
+	Both Derek and I worked together equally to formulate and code the problem. We formulated every step together, discussing how and why we were to implement everything, from how to design the objects, to the heuristic evaluation, to the inner workings of the infection algorithm.
+
+Eric:
+	This project provided me 
